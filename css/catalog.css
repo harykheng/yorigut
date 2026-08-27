@@ -896,7 +896,7 @@
 .spinner-sm {
   width: 14px;
   height: 14px;
-  border: 2px solid var(--border, #e8ded4);
+  border: 2px solid var(--border, #e1ebe4);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.75s linear infinite;
@@ -911,7 +911,7 @@
   justify-content: space-between;
   padding: 11px 14px;
   background: #fff;
-  border: 1.5px solid var(--border-light, #e8ded4);
+  border: 1.5px solid var(--border-light, #e1ebe4);
   border-radius: var(--radius-md);
   gap: 10px;
   cursor: pointer;
@@ -1215,7 +1215,7 @@
 
 .btn-pick-variant:hover  { background: var(--latte); }
 .btn-pick-variant:active { transform: scale(0.95); }
-.btn-pick-variant:disabled { background: #c9c2ba; cursor: not-allowed; transform: none; }
+.btn-pick-variant:disabled { background: #b9c4bd; cursor: not-allowed; transform: none; }
 
 .vbadge {
   position: absolute;
@@ -1372,7 +1372,7 @@
 .vs-qty-ctrl  { display: flex; align-items: center; gap: 14px; }
 
 .vs-add-btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
-.vs-add-btn:disabled { background: #c9c2ba; cursor: not-allowed; }
+.vs-add-btn:disabled { background: #b9c4bd; cursor: not-allowed; }
 
 .vs-stock-hint { font-size: 12px; font-weight: 700; color: #c05000; }
 
@@ -1494,7 +1494,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #faf8f5;
+  background: #f5faf6;
 }
 
 .qp-topbar {
@@ -1502,7 +1502,7 @@
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  border-bottom: 1px solid #ede8e2;
+  border-bottom: 1px solid #dde8e1;
 }
 
 .qp-back {
@@ -1520,12 +1520,12 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
-.qp-back:hover { background: #f0ece6; }
+.qp-back:hover { background: #e9f2ec; }
 
 .qp-topbar-title {
   font-size: 15px;
   font-weight: 700;
-  color: #2d1a0e;
+  color: #16241d;
 }
 
 .qp-body {
@@ -1540,7 +1540,7 @@
 .qp-store-badge {
   font-size: 13px;
   font-weight: 700;
-  color: #7a5538;
+  color: #45604f;
   letter-spacing: 0.04em;
   margin-bottom: 20px;
 }
@@ -1557,7 +1557,7 @@
 .qp-total-label {
   font-size: 11px;
   font-weight: 700;
-  color: #9a7a65;
+  color: #6f8879;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 4px;
@@ -1566,7 +1566,7 @@
 .qp-total-amount {
   font-size: 30px;
   font-weight: 800;
-  color: #2d1a0e;
+  color: #16241d;
   letter-spacing: -0.025em;
   line-height: 1.1;
   margin-bottom: 12px;
@@ -1574,7 +1574,7 @@
 
 .qp-hint {
   font-size: 12px;
-  color: #b09a8a;
+  color: #9aac9f;
   text-align: center;
   line-height: 1.55;
   margin: 0 0 32px;
@@ -1586,7 +1586,7 @@
   padding: 12px 28px;
   background: transparent;
   color: #1e3028;
-  border: 1.5px solid #c4a898;
+  border: 1.5px solid #a9c9b3;
   border-radius: 14px;
   font-size: 14px;
   font-weight: 600;
@@ -1595,7 +1595,7 @@
   font-family: inherit;
   margin-bottom: 12px;
 }
-.btn-qp-save:hover  { background: #f0ebe6; }
+.btn-qp-save:hover  { background: #e8f2ea; }
 .btn-qp-save:active { transform: scale(0.97); }
 
 .btn-qp-confirm {
@@ -1633,7 +1633,7 @@
   position: relative;
   width: 100%;
   max-width: 340px;
-  background: #faf8f5;
+  background: #f5faf6;
   border-radius: 20px;
   padding: 32px 24px 28px;
   display: flex;
@@ -1649,7 +1649,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #f0ebe6;
+  background: #e8f2ea;
   color: #1e3028;
   border: none;
   cursor: pointer;
@@ -1659,7 +1659,7 @@
   align-items: center;
   justify-content: center;
 }
-.qview-close:hover { background: #e6ddd5; }
+.qview-close:hover { background: #dde8e1; }
 
 /* ================================================================
    PROFILE MODAL (detail pemesan bottom sheet)
@@ -1744,13 +1744,13 @@
   align-items: center;
   gap: 12px;
   background: #fff;
-  border: 1.5px solid #e8e0d8;
+  border: 1.5px solid #dbe6df;
   border-radius: 14px;
   padding: 14px 16px;
   cursor: pointer;
   transition: background 0.15s;
 }
-.profile-card:hover { background: #faf6f3; }
+.profile-card:hover { background: #f2f8f4; }
 
 .profile-card-avatar {
   font-size: 22px;
@@ -1773,23 +1773,23 @@
 
 .profile-card-sub {
   font-size: 12px;
-  color: #a08878;
+  color: #8a9d90;
   margin-top: 2px;
 }
 
 .profile-card-arrow {
   font-size: 20px;
-  color: #c4a898;
+  color: #a9c9b3;
   flex-shrink: 0;
 }
 
-.profile-card.is-filled .profile-card-name { color: #2d1a0e; }
-.profile-card.is-filled .profile-card-sub  { color: #7a5538; }
+.profile-card.is-filled .profile-card-name { color: #16241d; }
+.profile-card.is-filled .profile-card-sub  { color: #45604f; }
 
 /* Label optional hint */
 .label-opt {
   font-weight: 400;
-  color: #a08878;
+  color: #8a9d90;
   font-size: 12px;
 }
 
@@ -1811,7 +1811,7 @@
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  background: #f0ebe6;
+  background: #e8f2ea;
   min-height: 100dvh;
   padding-bottom: 40px;
 }
@@ -1898,7 +1898,7 @@
   padding: 13px;
   background: transparent;
   color: #1e3028;
-  border: 1.5px solid #c4a898;
+  border: 1.5px solid #a9c9b3;
   border-radius: var(--radius-lg);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
@@ -1906,7 +1906,7 @@
   cursor: pointer;
   transition: background 0.15s;
 }
-.btn-oss-qr:hover { background: #f5ede8; }
+.btn-oss-qr:hover { background: #ecf5ef; }
 
 .oss-card {
   margin: 0 16px 12px;

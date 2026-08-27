@@ -7,16 +7,16 @@
 :root {
   --primary:       #1e3028;
   --primary-hover: #2a4438;
-  --latte:         #c4956a;
-  --latte-light:   #e8d5c4;
-  --latte-xlight:  #f5ece4;
-  --cream:         #fdf8f4;
+  --latte:         #6f9c7f;
+  --latte-light:   #d7e8dc;
+  --latte-xlight:  #eef5f0;
+  --cream:         #f7faf8;
   --white:         #ffffff;
-  --text-dark:     #1a0f0a;
-  --text-mid:      #6b4c3b;
-  --text-soft:     #a08070;
-  --border:        #ede0d4;
-  --border-light:  #e8ded4;
+  --text-dark:     #142019;
+  --text-mid:      #47614f;
+  --text-soft:     #86998d;
+  --border:        #dbe6de;
+  --border-light:  #e1ebe4;
   --shadow-sm:  0 2px 8px  rgba(30,48,40,0.07);
   --shadow-md:  0 4px 20px rgba(30,48,40,0.11);
   --shadow-lg:  0 8px 32px rgba(30,48,40,0.16);
