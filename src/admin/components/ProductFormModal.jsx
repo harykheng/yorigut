@@ -153,7 +153,7 @@ export default function ProductFormModal({ isOpen, product, onClose, onSaved }) 
             onFileSelect={setImageFile}
             onRemove={() => { setImageFile(null); setExistingImageUrl(null); }}
             maxSizeMB={5}
-            hint="PNG, JPG, WEBP — Maks 5 MB"
+            hint="JPG/PNG/WEBP persegi (1:1), disarankan 800×800px — Maks 5 MB"
           />
         </div>
 

@@ -329,6 +329,7 @@
 .ois-change:hover { background: var(--latte-xlight); }
 
 /* ---- BANNER ---- */
+/* Default look (no banner image uploaded): green gradient card + white text. */
 .catalog-banner {
   background: linear-gradient(135deg, var(--primary) 0%, #35513f 55%, #4f7a5f 100%);
   margin: 16px 16px 0;
@@ -349,7 +350,6 @@
 .banner-texts { flex: 1; }
 .banner-title  { font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px; }
 .banner-sub    { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.75); }
-.banner-deco   { font-size: 44px; opacity: 0.2; flex-shrink: 0; line-height: 1; margin-left: 8px; }
 
 .banner-bg-img {
   position: absolute;
@@ -358,12 +358,12 @@
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-lg);
-  opacity: 0.22;
   pointer-events: none;
 }
 
-/* Background circle deco */
-.catalog-banner::before {
+/* Background circle deco — only on the default gradient card, not over a
+   customer's own uploaded photo. */
+.catalog-banner:not(.has-image)::before {
   content: '';
   position: absolute;
   right: -30px;
@@ -372,6 +372,17 @@
   height: 120px;
   background: rgba(255,255,255,0.06);
   border-radius: 50%;
+}
+
+/* With an uploaded banner photo: no green gradient, show the photo as-is —
+   just a dark scrim so the white title/subtitle stay readable over it. */
+.catalog-banner.has-image { background: #1a1a1a; }
+.catalog-banner.has-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
 }
 
 /* ---- PRODUCTS SECTION ---- */

@@ -68,14 +68,13 @@ export default function CatalogStep({ settings, onPickVariant }) {
         <button className="ois-change" onClick={goBack}>Ubah</button>
       </div>
 
-      <div className="catalog-banner">
+      <div className={`catalog-banner${bannerImg ? ' has-image' : ''}`}>
         {bannerImg && <img className="banner-bg-img" src={bannerImg} alt="" aria-hidden="true" />}
         <div className="banner-inner">
           <div className="banner-texts">
             <div className="banner-title">{bannerTitle}</div>
             <div className="banner-sub">{bannerSub}</div>
           </div>
-          <div className="banner-deco">☕</div>
         </div>
       </div>
 

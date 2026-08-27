@@ -116,7 +116,7 @@ export default function SettingsTab() {
               onFileSelect={setLogoFile}
               onRemove={() => { setLogoFile(null); setExistingLogoUrl(null); }}
               maxSizeMB={2}
-              hint="PNG, JPG, WEBP, SVG — Maks 2 MB"
+              hint="PNG/JPG/WEBP persegi (1:1), disarankan 256×256px — Maks 2 MB"
             />
             <p className="form-hint">Mascot/ikon kecil di header. Tampil kalau tidak ada logo ikon, fallback ke emoji di atas.</p>
           </div>
@@ -127,7 +127,7 @@ export default function SettingsTab() {
               onFileSelect={setLogoTextFile}
               onRemove={() => { setLogoTextFile(null); setExistingLogoTextUrl(null); }}
               maxSizeMB={2}
-              hint="PNG, JPG, WEBP, SVG — Maks 2 MB"
+              hint="PNG transparan landscape, disarankan 500×100px (rasio ~5:1) — Maks 2 MB"
             />
             <p className="form-hint">Ganti tulisan "Nama Brand" di header dengan gambar logo teks kamu sendiri. Kalau kosong, tampil sebagai teks biasa.</p>
           </div>
@@ -142,7 +142,7 @@ export default function SettingsTab() {
               onFileSelect={setFaviconFile}
               onRemove={() => { setFaviconFile(null); setExistingFaviconUrl(null); }}
               maxSizeMB={1}
-              hint="PNG persegi, disarankan 32×32 atau 64×64 — Maks 1 MB"
+              hint="PNG persegi (1:1), disarankan 512×512px — Maks 1 MB"
             />
             <p className="form-hint">Tampil di tab browser untuk katalog, admin, dan lacak pesanan. Kalau kosong, pakai favicon default bawaan template.</p>
           </div>
@@ -174,7 +174,7 @@ export default function SettingsTab() {
               onFileSelect={setBannerImageFile}
               onRemove={() => { setBannerImageFile(null); setExistingBannerImageUrl(null); }}
               maxSizeMB={5}
-              hint="PNG, JPG, WEBP — Maks 5 MB"
+              hint="JPG/PNG/WEBP landscape, disarankan 1200×500px (rasio ~2.4:1) — Maks 5 MB"
             />
             <p className="form-hint">Tampil sebagai foto background di banner katalog</p>
           </div>
