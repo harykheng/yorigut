@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
         origin_longitude: originLng,
         destination_latitude: destLat,
         destination_longitude: destLng,
-        couriers: 'gosend,grab',
+        couriers: 'gosend,grab,paxel',
         items: [{
           name: `Pesanan ${STORE_NAME}`,
           description: 'Minuman & makanan',
