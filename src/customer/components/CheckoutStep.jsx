@@ -1,18 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../CartContext.jsx';
+import { useShipping } from '../hooks/useShipping.js';
 import { config } from '../../shared/lib/config.js';
 import { formatPrice } from '../../shared/lib/format.js';
-import { cartTotal, getDiscountAmount, cartFinalTotal } from '../../shared/lib/cart.js';
+import { cartCount, cartTotal, getDiscountAmount, cartFinalTotal } from '../../shared/lib/cart.js';
 import { fetchActivePromoByCode } from '../../shared/lib/promos.js';
 import OngkirOptions from './OngkirOptions.jsx';
 
 export default function CheckoutStep({ settings, onOpenProfile, onSubmitQris }) {
   const { state, dispatch } = useCart();
+  const { calculate } = useShipping();
   const [promoInput, setPromoInput] = useState('');
   const [promoResult, setPromoResult] = useState(null); // { type: 'success'|'error', msg }
   const [promoChecking, setPromoChecking] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // Auto-check ongkir on entering checkout — only when the profile already
+  // has a saved address (returning customer, lat/lng from localStorage) and
+  // shipping hasn't been calculated yet this session. Fires once per mount
+  // (empty deps, CheckoutStep unmounts/remounts on step change), not on
+  // every address change — see the single-check-on-save note in useShipping.js.
+  useEffect(() => {
+    if (
+      state.orderType === 'delivery' &&
+      state.profile.lat && state.profile.lng &&
+      state.shippingStatus === 'idle'
+    ) {
+      const weightGrams = cartCount(state.cart) * config.defaultItemWeightG;
+      calculate(state.profile.lat, state.profile.lng, weightGrams, cartTotal(state.cart));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const storeName = settings?.brand_name || config.storeName;
   const storeAddress = settings?.store_address || config.storeAddress;
