@@ -67,7 +67,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 16px rgba(85, 49, 37, 0.25);
+  box-shadow: 0 2px 16px rgba(30, 48, 40, 0.25);
 }
 
 .admin-header .logo-text { color: var(--cream); font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }

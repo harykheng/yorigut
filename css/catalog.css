@@ -226,7 +226,7 @@
 .btn-next:hover:not(:disabled) {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(85,49,37,0.28);
+  box-shadow: 0 8px 24px rgba(30,48,40,0.28);
 }
 .btn-next:active:not(:disabled) { transform: translateY(0); }
 .btn-next:disabled { opacity: 0.28; cursor: not-allowed; }
@@ -330,7 +330,7 @@
 
 /* ---- BANNER ---- */
 .catalog-banner {
-  background: linear-gradient(135deg, var(--primary) 0%, #7a4a38 55%, #9a6248 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, #35513f 55%, #4f7a5f 100%);
   margin: 16px 16px 0;
   border-radius: var(--radius-lg);
   padding: 20px;
@@ -522,7 +522,7 @@
   background: var(--white);
   border-top: 1px solid var(--border);
   z-index: 200;
-  box-shadow: 0 -4px 24px rgba(85,49,37,0.1);
+  box-shadow: 0 -4px 24px rgba(30,48,40,0.1);
   transform: translateY(100%);
   transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
@@ -1513,7 +1513,7 @@
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  color: #553125;
+  color: #1e3028;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1549,7 +1549,7 @@
   background: #fff;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 2px 20px rgba(85,49,37,0.10);
+  box-shadow: 0 2px 20px rgba(30,48,40,0.10);
   margin-bottom: 24px;
   line-height: 0;
 }
@@ -1585,7 +1585,7 @@
   max-width: 280px;
   padding: 12px 28px;
   background: transparent;
-  color: #553125;
+  color: #1e3028;
   border: 1.5px solid #c4a898;
   border-radius: 14px;
   font-size: 14px;
@@ -1602,7 +1602,7 @@
   width: 100%;
   max-width: 280px;
   padding: 16px 28px;
-  background: #553125;
+  background: #1e3028;
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -1650,7 +1650,7 @@
   height: 32px;
   border-radius: 50%;
   background: #f0ebe6;
-  color: #553125;
+  color: #1e3028;
   border: none;
   cursor: pointer;
   font-size: 14px;
@@ -1726,7 +1726,7 @@
 .btn-profile-save {
   width: 100%;
   padding: 15px;
-  background: #553125;
+  background: #1e3028;
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -1897,7 +1897,7 @@
   margin: 0 16px 16px;
   padding: 13px;
   background: transparent;
-  color: #553125;
+  color: #1e3028;
   border: 1.5px solid #c4a898;
   border-radius: var(--radius-lg);
   font-family: 'Plus Jakarta Sans', sans-serif;
