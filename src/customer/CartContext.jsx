@@ -17,7 +17,9 @@ const initialState = {
   isProfileFilled: false,
   note: '',
   // Shipping calc result — displayed by OngkirOptions, set by useShipping (triggered
-  // once from ProfileModal's save handler, never on every address keystroke).
+  // once from ProfileModal's save handler, or once from CheckoutStep's mount
+  // effect for a returning customer's saved address — never on every address
+  // keystroke or on every render).
   shippingStatus: 'idle',   // 'idle' | 'loading' | 'options' | 'static' | 'unavailable'
   shippingOptions: [],       // Biteship courier options, when shippingStatus === 'options'
   shippingStaticKm: null,    // distance in km, when shippingStatus === 'static' | 'unavailable'

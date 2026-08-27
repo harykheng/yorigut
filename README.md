@@ -99,6 +99,7 @@ CREATE TABLE settings (
   brand_icon       TEXT,
   logo_url         TEXT,
   logo_text_url    TEXT,
+  favicon_url      TEXT,
   store_address    TEXT,
   store_hours      TEXT,
   store_maps_url   TEXT,

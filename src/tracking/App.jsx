@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { config } from '../shared/lib/config.js';
 import { lookupOrder } from '../shared/lib/orders.js';
 import { useToast } from '../shared/components/Toast.jsx';
+import FaviconSync from '../shared/components/FaviconSync.jsx';
 import OrderStatusCard from './components/OrderStatusCard.jsx';
 
 const params = new URLSearchParams(window.location.search);
@@ -39,6 +40,7 @@ export default function App() {
 
   return (
     <div className="trk-page">
+      <FaviconSync />
       <header className="catalog-topbar">
         <a className="topbar-back" href="/" aria-label="Kembali ke katalog" style={{ textDecoration: 'none' }}>←</a>
         <div className="topbar-center">

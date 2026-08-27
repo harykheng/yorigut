@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { config } from '../shared/lib/config.js';
 import { AuthProvider, useAuth } from './AuthContext.jsx';
+import { useSettings } from '../shared/hooks/useSettings.js';
 import { ConfirmDialogProvider } from '../shared/components/ConfirmDialog.jsx';
+import FaviconSync from '../shared/components/FaviconSync.jsx';
 import { useNewOrderAlerts } from './hooks/useNewOrderAlerts.js';
 import LoginScreen from './components/LoginScreen.jsx';
 import DashboardTab from './components/DashboardTab.jsx';
@@ -20,6 +22,8 @@ const TABS = [
 
 function Dashboard() {
   const { session, logout } = useAuth();
+  const { settings } = useSettings();
+  const logoUrl = settings?.logo_url;
   const [activeTab, setActiveTab] = useState('dashboard');
   const newOrders = useNewOrderAlerts();
 
@@ -32,7 +36,7 @@ function Dashboard() {
     <div className="admin-layout active">
       <header className="admin-header">
         <div className="logo">
-          <span className="logo-icon">☕</span>
+          {logoUrl && <img className="logo-icon-img" src={logoUrl} alt={config.storeName} />}
           <div className="logo-text">{config.storeName} Admin</div>
         </div>
         <div className="admin-header-right">
@@ -80,7 +84,12 @@ function Dashboard() {
 function AppShell() {
   const { session } = useAuth();
   if (session === undefined) return null; // brief loading check, no original equivalent to flash
-  return session ? <Dashboard /> : <LoginScreen />;
+  return (
+    <>
+      <FaviconSync />
+      {session ? <Dashboard /> : <LoginScreen />}
+    </>
+  );
 }
 
 export default function App() {

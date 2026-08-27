@@ -22,8 +22,8 @@
   animation: fadeInUp 0.4s ease;
 }
 
-.login-logo { text-align: center; margin-bottom: 28px; }
-.login-logo .logo-icon { font-size: 52px; display: block; margin-bottom: 6px; }
+.login-logo { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 28px; }
+.login-logo .logo-icon-img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
 .login-logo .logo-text { font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
 
 .login-subtitle {
@@ -70,8 +70,9 @@
   box-shadow: 0 2px 16px rgba(30, 48, 40, 0.25);
 }
 
+.admin-header .logo { display: flex; align-items: center; gap: 10px; }
 .admin-header .logo-text { color: var(--cream); font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
-.admin-header .logo-icon { font-size: 20px; }
+.admin-header .logo-icon-img { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
 
 .admin-header-right { display: flex; align-items: center; gap: 14px; }
 

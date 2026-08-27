@@ -21,8 +21,9 @@ async function checkBiteshipRatesViaEdgeFunction(destLat, destLng, weightGrams, 
 export function useShipping() {
   const { dispatch } = useCart();
 
-  // Fires exactly once per call — the caller (ProfileModal's save handler) is
-  // responsible for only calling this once, not on every address keystroke.
+  // Fires exactly once per call — callers (ProfileModal's save handler, and
+  // CheckoutStep's mount effect for returning customers) are responsible for
+  // only calling this once per address, not on every address keystroke.
   const calculate = useCallback(async (destLat, destLng, weightGrams, orderValue) => {
     dispatch({ type: 'SET_SHIPPING_LOADING' });
 
