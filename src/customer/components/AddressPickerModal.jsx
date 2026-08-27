@@ -5,7 +5,31 @@ import AddressMapPreview from './AddressMapPreview.jsx';
 
 async function fetchSuggestions(q) {
   try {
-    const url = `https://api.locationiq.com/v1/autocomplete?key=${config.locationIqKey}&q=${encodeURIComponent(q)}&limit=8&dedupe=1&accept-language=id&countrycodes=id`;
+    const params = new URLSearchParams({
+      key: config.locationIqKey,
+      q,
+      limit: '8',
+      dedupe: '1',
+      'accept-language': 'id',
+      countrycodes: 'id',
+    });
+
+    // Bias results toward the store's area so e.g. searching "Taman Anggrek"
+    // from a Jakarta store surfaces the Jakarta one first, not a same-named
+    // place in another city. viewbox + bounded=0 is a soft bias (LocationIQ
+    // still returns better matches outside the box), not a hard filter —
+    // bounded=1 would hide a legitimately farther-out address entirely if
+    // the box size ever doesn't match reality.
+    if (Number.isFinite(config.storeLat) && Number.isFinite(config.storeLng)) {
+      const delta = 0.5; // ~55km box around the store
+      params.set(
+        'viewbox',
+        `${config.storeLng - delta},${config.storeLat + delta},${config.storeLng + delta},${config.storeLat - delta}`
+      );
+      params.set('bounded', '0');
+    }
+
+    const url = `https://api.locationiq.com/v1/autocomplete?${params.toString()}`;
     const res = await fetch(url);
     if (!res.ok) return [];
     return await res.json();
