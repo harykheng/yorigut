@@ -61,6 +61,14 @@ Deno.serve(async (req) => {
 
     const data = await biteshipRes.json();
 
+    // Debug aid: we ask Biteship for gosend,grab,paxel but Biteship silently
+    // drops any courier that isn't active/verified on the account or doesn't
+    // cover this origin/destination — it's not something this function
+    // filters. Check this log (Supabase Dashboard → Edge Functions →
+    // check-shipping → Logs) to see exactly which couriers Biteship
+    // actually returned pricing for on a given request.
+    console.log('Biteship pricing response:', JSON.stringify(data.pricing));
+
     if (!biteshipRes.ok || !Array.isArray(data.pricing)) {
       return json({ error: data?.error || 'Biteship tidak mengembalikan tarif untuk lokasi ini' }, 502);
     }
