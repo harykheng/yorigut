@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { config } from '../shared/lib/config.js';
 import { AuthProvider, useAuth } from './AuthContext.jsx';
 import { ConfirmDialogProvider } from '../shared/components/ConfirmDialog.jsx';
+import FaviconSync from '../shared/components/FaviconSync.jsx';
 import { useNewOrderAlerts } from './hooks/useNewOrderAlerts.js';
 import LoginScreen from './components/LoginScreen.jsx';
 import DashboardTab from './components/DashboardTab.jsx';
@@ -80,7 +81,12 @@ function Dashboard() {
 function AppShell() {
   const { session } = useAuth();
   if (session === undefined) return null; // brief loading check, no original equivalent to flash
-  return session ? <Dashboard /> : <LoginScreen />;
+  return (
+    <>
+      <FaviconSync />
+      {session ? <Dashboard /> : <LoginScreen />}
+    </>
+  );
 }
 
 export default function App() {

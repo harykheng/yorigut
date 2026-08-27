@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { CartProvider, useCart } from './CartContext.jsx';
 import { useSettings } from '../shared/hooks/useSettings.js';
 import { useToast } from '../shared/components/Toast.jsx';
+import FaviconSync from '../shared/components/FaviconSync.jsx';
 import { config } from '../shared/lib/config.js';
 import { trackVisit } from '../shared/lib/visits.js';
 import { cartTotal, getDiscountAmount, cartFinalTotal, cartSnapshot, cartStockItems } from '../shared/lib/cart.js';
@@ -97,6 +98,7 @@ function AppShell() {
 
   return (
     <>
+      <FaviconSync />
       {state.step === 1 && <OrderTypeStep settings={settings} />}
       {state.step === 2 && <CatalogStep settings={settings} onPickVariant={setVariantProduct} />}
       {state.step === 3 && (

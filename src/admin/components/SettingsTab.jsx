@@ -19,6 +19,8 @@ export default function SettingsTab() {
   const [existingLogoTextUrl, setExistingLogoTextUrl] = useState(null);
   const [bannerImageFile, setBannerImageFile] = useState(null);
   const [existingBannerImageUrl, setExistingBannerImageUrl] = useState(null);
+  const [faviconFile, setFaviconFile] = useState(null);
+  const [existingFaviconUrl, setExistingFaviconUrl] = useState(null);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -37,6 +39,7 @@ export default function SettingsTab() {
     setExistingLogoUrl(settings.logo_url || null);
     setExistingLogoTextUrl(settings.logo_text_url || null);
     setExistingBannerImageUrl(settings.banner_image_url || null);
+    setExistingFaviconUrl(settings.favicon_url || null);
   }, [settings]);
 
   async function handleSubmit(e) {
@@ -56,13 +59,16 @@ export default function SettingsTab() {
         logoFile,
         logoTextFile,
         bannerImageFile,
+        faviconFile,
         existingLogoUrl,
         existingLogoTextUrl,
         existingBannerImageUrl,
+        existingFaviconUrl,
       });
       setLogoFile(null);
       setLogoTextFile(null);
       setBannerImageFile(null);
+      setFaviconFile(null);
       showToast('Pengaturan berhasil disimpan! ✅', 'success');
       await refetch();
     } catch (err) {
@@ -124,6 +130,21 @@ export default function SettingsTab() {
               hint="PNG, JPG, WEBP, SVG — Maks 2 MB"
             />
             <p className="form-hint">Ganti tulisan "Nama Brand" di header dengan gambar logo teks kamu sendiri. Kalau kosong, tampil sebagai teks biasa.</p>
+          </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-section-title">Favicon</div>
+          <div className="form-group" style={{ marginBottom: 0 }}>
+            <label>Ikon Tab Browser (opsional)</label>
+            <ImageUploadDropzone
+              existingUrl={existingFaviconUrl}
+              onFileSelect={setFaviconFile}
+              onRemove={() => { setFaviconFile(null); setExistingFaviconUrl(null); }}
+              maxSizeMB={1}
+              hint="PNG persegi, disarankan 32×32 atau 64×64 — Maks 1 MB"
+            />
+            <p className="form-hint">Tampil di tab browser untuk katalog, admin, dan lacak pesanan. Kalau kosong, pakai favicon default bawaan template.</p>
           </div>
         </div>
 
