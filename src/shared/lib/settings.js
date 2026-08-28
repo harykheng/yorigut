@@ -12,7 +12,7 @@ async function uploadSettingsImage(file, prefix) {
 }
 
 export async function saveSettings({
-  brandName, brandIcon, storeAddress, storeHours, storeMapsUrl,
+  brandName, brandIcon, adminWhatsapp, storeAddress, storeHours, storeMapsUrl,
   bannerTitle, bannerSubtitle, instagramUrl, tiktokUrl,
   logoFile, logoTextFile, bannerImageFile, faviconFile,
   existingLogoUrl, existingLogoTextUrl, existingBannerImageUrl, existingFaviconUrl,
@@ -36,6 +36,7 @@ export async function saveSettings({
     logo_url: logoUrl,
     logo_text_url: logoTextUrl,
     favicon_url: faviconUrl,
+    admin_whatsapp: adminWhatsapp || null,
     store_address: storeAddress,
     store_hours: storeHours,
     store_maps_url: storeMapsUrl || null,

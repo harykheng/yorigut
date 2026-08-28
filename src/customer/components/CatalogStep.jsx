@@ -19,7 +19,7 @@ export default function CatalogStep({ settings, onPickVariant }) {
   const bannerTitle = settings?.banner_title || config.bannerTitle;
   const bannerSub = settings?.banner_subtitle || config.bannerSubtitle;
   const bannerImg = settings?.banner_image_url;
-  const waHelpUrl = waLink(config.adminWhatsapp, `Halo ${brandName}, saya butuh bantuan untuk pemesanan!`);
+  const waHelpUrl = waLink(settings?.admin_whatsapp || config.adminWhatsapp, `Halo ${brandName}, saya butuh bantuan untuk pemesanan!`);
 
   const count = cartCount(state.cart);
   const total = cartTotal(state.cart);

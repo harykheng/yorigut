@@ -19,7 +19,7 @@ export default function OrderTypeStep({ settings }) {
     document.title = brandName;
   }, [brandName]);
 
-  const waHelpUrl = waLink(config.adminWhatsapp, `Halo ${brandName}, saya butuh bantuan untuk pemesanan!`);
+  const waHelpUrl = waLink(settings?.admin_whatsapp || config.adminWhatsapp, `Halo ${brandName}, saya butuh bantuan untuk pemesanan!`);
 
   function selectOrderType(type) {
     dispatch({ type: 'SELECT_ORDER_TYPE', orderType: type });

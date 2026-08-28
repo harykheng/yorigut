@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS settings (
   logo_url         TEXT,
   logo_text_url    TEXT,
   favicon_url      TEXT,
+  admin_whatsapp   TEXT,
   store_address    TEXT,
   store_hours      TEXT,
   store_maps_url   TEXT,
@@ -112,6 +113,7 @@ CREATE TABLE IF NOT EXISTS settings (
 
 ALTER TABLE settings ADD COLUMN IF NOT EXISTS logo_text_url TEXT;
 ALTER TABLE settings ADD COLUMN IF NOT EXISTS favicon_url TEXT;
+ALTER TABLE settings ADD COLUMN IF NOT EXISTS admin_whatsapp TEXT;
 
 ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
 

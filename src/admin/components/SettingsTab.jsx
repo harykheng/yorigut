@@ -5,7 +5,7 @@ import { saveSettings } from '../../shared/lib/settings.js';
 import ImageUploadDropzone from './ImageUploadDropzone.jsx';
 
 const EMPTY_FORM = {
-  brandName: '', brandIcon: '☕', storeAddress: '', storeHours: '', storeMapsUrl: '',
+  brandName: '', brandIcon: '☕', adminWhatsapp: '', storeAddress: '', storeHours: '', storeMapsUrl: '',
   bannerTitle: '', bannerSubtitle: '', instagramUrl: '', tiktokUrl: '',
 };
 
@@ -28,6 +28,7 @@ export default function SettingsTab() {
     setForm({
       brandName: settings.brand_name || '',
       brandIcon: settings.brand_icon || '☕',
+      adminWhatsapp: settings.admin_whatsapp || '',
       storeAddress: settings.store_address || '',
       storeHours: settings.store_hours || '',
       storeMapsUrl: settings.store_maps_url || '',
@@ -49,6 +50,7 @@ export default function SettingsTab() {
       await saveSettings({
         brandName: form.brandName.trim(),
         brandIcon: form.brandIcon.trim(),
+        adminWhatsapp: form.adminWhatsapp.trim(),
         storeAddress: form.storeAddress.trim(),
         storeHours: form.storeHours.trim(),
         storeMapsUrl: form.storeMapsUrl.trim(),
@@ -145,6 +147,18 @@ export default function SettingsTab() {
               hint="PNG persegi (1:1), disarankan 512×512px — Maks 1 MB"
             />
             <p className="form-hint">Tampil di tab browser untuk katalog, admin, dan lacak pesanan. Kalau kosong, pakai favicon default bawaan template.</p>
+          </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-section-title">Kontak</div>
+          <div className="form-group" style={{ marginBottom: 0 }}>
+            <label htmlFor="settingAdminWhatsapp">Nomor WhatsApp Admin</label>
+            <input
+              type="tel" id="settingAdminWhatsapp" placeholder="6281234567890"
+              value={form.adminWhatsapp} onChange={(e) => setForm((f) => ({ ...f, adminWhatsapp: e.target.value.replace(/[^\d]/g, '') }))}
+            />
+            <p className="form-hint">Format: 62 + nomor tanpa angka 0 di depan (mis. 6281234567890). Ini nomor yang dituju customer buat kirim bukti transfer & tombol "Butuh Bantuan".</p>
           </div>
         </div>
 
