@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { config } from '../../shared/lib/config.js';
 import { useBodyScrollLock } from '../../shared/hooks/useBodyScrollLock.js';
+import { haversineDistance } from '../../shared/lib/shipping.js';
 import AddressMapPreview from './AddressMapPreview.jsx';
 
 async function fetchSuggestions(q) {
@@ -14,13 +15,15 @@ async function fetchSuggestions(q) {
       countrycodes: 'id',
     });
 
+    const hasStoreCoords = Number.isFinite(config.storeLat) && Number.isFinite(config.storeLng);
+
     // Bias results toward the store's area so e.g. searching "Taman Anggrek"
     // from a Jakarta store surfaces the Jakarta one first, not a same-named
     // place in another city. viewbox + bounded=0 is a soft bias (LocationIQ
     // still returns better matches outside the box), not a hard filter —
     // bounded=1 would hide a legitimately farther-out address entirely if
     // the box size ever doesn't match reality.
-    if (Number.isFinite(config.storeLat) && Number.isFinite(config.storeLng)) {
+    if (hasStoreCoords) {
       const delta = 0.5; // ~55km box around the store
       params.set(
         'viewbox',
@@ -32,7 +35,21 @@ async function fetchSuggestions(q) {
     const url = `https://api.locationiq.com/v1/autocomplete?${params.toString()}`;
     const res = await fetch(url);
     if (!res.ok) return [];
-    return await res.json();
+    const results = await res.json();
+    if (!Array.isArray(results)) return results;
+
+    // viewbox only biases LocationIQ's own relevance ranking (text match +
+    // proximity mixed together) — it doesn't guarantee nearest-first order.
+    // Re-sort by actual distance to the store so the closest result is
+    // always first, regardless of how LocationIQ ranked it internally.
+    if (hasStoreCoords) {
+      results.sort((a, b) =>
+        haversineDistance(config.storeLat, config.storeLng, parseFloat(a.lat), parseFloat(a.lon)) -
+        haversineDistance(config.storeLat, config.storeLng, parseFloat(b.lat), parseFloat(b.lon))
+      );
+    }
+
+    return results;
   } catch {
     return []; // silent — customer can still search again
   }

@@ -43,26 +43,47 @@ export default function OngkirOptions() {
     );
   }
 
-  // shippingStatus === 'options'
+  // shippingStatus === 'options' — group by courier (Gojek/Grab/Paxel/...) so a
+  // route with several couriers × several service tiers each doesn't read as
+  // one long undifferentiated list. Keeps the original flat index per item
+  // (SELECT_SHIPPING_OPTION dispatches by index into the flat shippingOptions
+  // array in CartContext) even though rendering is grouped.
+  const groups = [];
+  const groupIndexByCourier = new Map();
+  shippingOptions.forEach((o, i) => {
+    const key = o.courierCode || o.courierName;
+    if (!groupIndexByCourier.has(key)) {
+      groupIndexByCourier.set(key, groups.length);
+      groups.push({ courierName: o.courierName, items: [] });
+    }
+    groups[groupIndexByCourier.get(key)].items.push({ ...o, index: i });
+  });
+  groups.forEach((g) => g.items.sort((a, b) => a.price - b.price));
+
   return (
     <div style={{ marginTop: 10 }}>
       <div className="ongkir-options-list">
-        {shippingOptions.map((o, i) => {
-          const isSelected = selectedShipping?.label === `${o.courierName} - ${o.serviceName}`;
-          return (
-            <div
-              key={`${o.courierCode}-${o.serviceName}`}
-              className={`ongkir-option-item${isSelected ? ' selected' : ''}`}
-              onClick={() => dispatch({ type: 'SELECT_SHIPPING_OPTION', index: i })}
-            >
-              <div className="ongkir-left">
-                <div className="ongkir-courier">{o.courierName} — {o.serviceName}</div>
-                <div className="ongkir-eta">{o.duration || ''}</div>
-              </div>
-              <div className="ongkir-price">{formatPrice(o.price)}</div>
-            </div>
-          );
-        })}
+        {groups.map((g) => (
+          <div className="ongkir-courier-group" key={g.courierName}>
+            <div className="ongkir-courier-group-label">{g.courierName}</div>
+            {g.items.map((o) => {
+              const isSelected = selectedShipping?.label === `${o.courierName} - ${o.serviceName}`;
+              return (
+                <div
+                  key={`${o.courierCode}-${o.serviceName}`}
+                  className={`ongkir-option-item${isSelected ? ' selected' : ''}`}
+                  onClick={() => dispatch({ type: 'SELECT_SHIPPING_OPTION', index: o.index })}
+                >
+                  <div className="ongkir-left">
+                    <div className="ongkir-courier">{o.serviceName}</div>
+                    <div className="ongkir-eta">{o.duration || ''}</div>
+                  </div>
+                  <div className="ongkir-price">{formatPrice(o.price)}</div>
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );

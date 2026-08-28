@@ -914,7 +914,17 @@
   flex-shrink: 0;
 }
 
-.ongkir-options-list { display: flex; flex-direction: column; gap: 8px; }
+.ongkir-options-list { display: flex; flex-direction: column; gap: 14px; }
+
+.ongkir-courier-group { display: flex; flex-direction: column; gap: 8px; }
+.ongkir-courier-group-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 2px;
+}
 
 .ongkir-option-item {
   display: flex;
