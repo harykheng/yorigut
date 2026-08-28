@@ -100,6 +100,7 @@ CREATE TABLE settings (
   logo_url         TEXT,
   logo_text_url    TEXT,
   favicon_url      TEXT,
+  admin_whatsapp   TEXT,
   store_address    TEXT,
   store_hours      TEXT,
   store_maps_url   TEXT,
@@ -247,9 +248,9 @@ Buka file `.env` dan sesuaikan:
 # Wajib diisi
 VITE_SUPABASE_URL=https://XXXXXXXXXXXXXXXX.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJhbGci...
-VITE_ADMIN_WHATSAPP=6281234567890   # format: 62 + nomor tanpa angka 0 di depan
 
 # Default brand/toko — bisa dioverride dari Admin > Pengaturan setelah tabel `settings` dibuat
+VITE_ADMIN_WHATSAPP=6281234567890   # format: 62 + nomor tanpa angka 0 di depan
 VITE_STORE_NAME=Nama Toko Kamu
 VITE_STORE_ADDRESS=Jl. Contoh No.1, Kota...
 VITE_STORE_MAPS_URL=https://maps.google.com/...   # link share Google Maps, bukan API
@@ -438,12 +439,12 @@ Klik **📋 Detail** pada satu pesanan untuk:
 **🔔 Notifikasi pesanan baru** — begitu ada pesanan masuk, admin yang lagi buka dashboard langsung dapat toast + bunyi + badge angka di tab "Pesanan" (real-time lewat Supabase Realtime, bukan polling). Cuma jalan selagi tab dashboard-nya kebuka di browser — bukan push notification asli ke HP/notifikasi sistem (itu butuh service worker + infrastruktur Web Push, di luar scope "client-side by default" project ini). Butuh Realtime diaktifkan buat tabel `orders` — sudah termasuk di `supabase-setup.sql` §6, atau aktifkan manual dari Supabase Dashboard → **Database** → **Replication**.
 
 ### Tab Pengaturan
-Ubah nama brand, ikon/logo, alamat & jam operasional toko, link Google Maps, banner katalog (judul, subjudul, foto), dan link Instagram/TikTok — semua tersimpan di tabel `settings` dan langsung berlaku di katalog tanpa perlu edit kode.
+Ubah nama brand, ikon/logo, favicon, nomor WhatsApp admin, alamat & jam operasional toko, link Google Maps, banner katalog (judul, subjudul, foto), dan link Instagram/TikTok — semua tersimpan di tabel `settings` dan langsung berlaku di katalog tanpa perlu edit kode.
 
 ### Ganti Nomor WhatsApp Admin
-Ubah `VITE_ADMIN_WHATSAPP` di `.env` (dan di env var hosting kalau sudah deploy), lalu redeploy.
-Format: `62` + nomor tanpa `0` di depan.
-Contoh: `08123456789` → tulis `628123456789`
+Cara utama: buka **Admin → Pengaturan → section "Kontak"**, isi nomor WhatsApp baru, simpan — langsung berlaku tanpa redeploy. Format: `62` + nomor tanpa `0` di depan (mis. `08123456789` → tulis `628123456789`).
+
+Kalau belum pernah diisi dari Pengaturan, nomor fallback ke `VITE_ADMIN_WHATSAPP` di `.env` (butuh redeploy kalau diubah dari sini) — cara ini masih dipertahankan sebagai default awal, tapi gak perlu dipakai lagi sehari-hari sekarang.
 
 ---
 

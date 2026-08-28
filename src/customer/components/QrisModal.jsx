@@ -7,7 +7,7 @@ import { insertOrder } from '../../shared/lib/orders.js';
 import { buildQrisConfirmMessage, waLink } from '../../shared/lib/whatsapp.js';
 import { config } from '../../shared/lib/config.js';
 
-export default function QrisModal({ pendingOrder, onClose, onConfirmed }) {
+export default function QrisModal({ pendingOrder, settings, onClose, onConfirmed }) {
   const isOpen = Boolean(pendingOrder);
   useBodyScrollLock(isOpen);
   const canvasRef = useRef(null);
@@ -67,7 +67,7 @@ export default function QrisModal({ pendingOrder, onClose, onConfirmed }) {
         status: 'pending',
       }, o.stockItems);
 
-      onConfirmed({ ...o, waUrl: waLink(config.adminWhatsapp, waMessage) });
+      onConfirmed({ ...o, waUrl: waLink(settings?.admin_whatsapp || config.adminWhatsapp, waMessage) });
     } catch (err) {
       console.error('Confirm QRIS error:', err);
       const stokHabisMatch = /STOK_HABIS: (.+)/.exec(err.message || '');
