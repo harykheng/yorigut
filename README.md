@@ -216,9 +216,19 @@ CREATE POLICY "Admin update images"
 
 ### Buat Akun Admin
 
+Ada 2 cara:
+
+**A. Set password langsung (paling gampang, tanpa setup tambahan)**
 1. Di sidebar Supabase, buka **Authentication** → **Users**
 2. Klik **Add user** → **Create new user**
-3. Isi email dan password yang akan dipakai untuk login ke `/admin.html`
+3. Isi email dan password yang akan dipakai untuk login ke `/admin/`
+
+**B. Kirim link undangan lewat email**
+1. Di sidebar Supabase, buka **Authentication** → **URL Configuration**, pastikan Site URL (atau Redirect URLs) mengarah ke domain kamu (mis. `https://tokokamu.com`)
+2. **Authentication** → **Users** → **Add user** → **Invite user**, isi emailnya
+3. Admin buka email undangan dan klik link — otomatis diarahkan ke `/admin/` dan muncul halaman "Buat Password" (bukan Dashboard langsung), isi password baru sekali, langsung masuk
+
+Kalau link undangan gak diklik dalam 24 jam, linknya expired — kirim ulang dari **Authentication** → **Users**.
 
 ---
 

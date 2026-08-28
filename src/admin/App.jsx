@@ -6,6 +6,7 @@ import { ConfirmDialogProvider } from '../shared/components/ConfirmDialog.jsx';
 import FaviconSync from '../shared/components/FaviconSync.jsx';
 import { useNewOrderAlerts } from './hooks/useNewOrderAlerts.js';
 import LoginScreen from './components/LoginScreen.jsx';
+import SetPasswordScreen from './components/SetPasswordScreen.jsx';
 import DashboardTab from './components/DashboardTab.jsx';
 import ProductsTab from './components/ProductsTab.jsx';
 import PromoTab from './components/PromoTab.jsx';
@@ -82,12 +83,12 @@ function Dashboard() {
 }
 
 function AppShell() {
-  const { session } = useAuth();
+  const { session, needsPasswordSetup } = useAuth();
   if (session === undefined) return null; // brief loading check, no original equivalent to flash
   return (
     <>
       <FaviconSync />
-      {session ? <Dashboard /> : <LoginScreen />}
+      {needsPasswordSetup ? <SetPasswordScreen /> : session ? <Dashboard /> : <LoginScreen />}
     </>
   );
 }
